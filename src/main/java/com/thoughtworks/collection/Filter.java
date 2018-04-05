@@ -10,22 +10,18 @@ public class Filter {
     public Filter(List<Integer> array) { this.array = array; }
 
     public List<Integer> filterEven() {
-        List<Integer> resultList = array.stream().filter(num -> num % 2 == 0).collect(Collectors.toList());
-        return resultList;
+        return array.stream().filter(num -> num % 2 == 0).collect(Collectors.toList());
     }
 
     public List<Integer> filterMultipleOfThree() {
-        List<Integer> resultList = array.stream().filter(num -> num % 3 == 0).collect(Collectors.toList());
-        return resultList;
+        return array.stream().filter(num -> num % 3 == 0).collect(Collectors.toList());
     }
 
     public List<Integer> getDifferentElements() {
-        List<Integer> resultList = array.stream().distinct().collect(Collectors.toList());
-        return resultList;
+        return array.stream().distinct().collect(Collectors.toList());
     }
 
     public List<Integer> getCommonElements(List<Integer> firstList, List<Integer> secondList) {
-        List<Integer> resultList = firstList.stream().filter(item -> secondList.contains(item)).collect(Collectors.toList());
-        return resultList;
+        return firstList.stream().filter(item -> secondList.contains(item)).collect(Collectors.toList());
     }
 }
