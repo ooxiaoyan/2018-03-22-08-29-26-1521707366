@@ -41,13 +41,10 @@ public class CollectionOperator {
     }
 
     public List<Integer> popEvenElments(int[] array) {
-        List<Integer> resultList = new ArrayList<>();
-        for (int i : array) {
-            if (i % 2 == 0) {
-                resultList.add(i);
-            }
-        }
-        return resultList;
+        return Arrays.stream(array)
+                .boxed()
+                .filter(n -> n%2 == 0)
+                .collect(Collectors.toList());
     }
 
     public int popLastElment(int[] array) {
