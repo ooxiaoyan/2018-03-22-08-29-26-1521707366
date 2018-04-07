@@ -33,6 +33,9 @@ public class MyMap {
         List<String> resultList = new ArrayList<>();
         String singleDigit, tenDigit = "", letters;
         for (Integer integer : array) {
+            if (integer <= 0) {
+                return null;
+            }
             int quotient = integer / 26;
             int remainder = integer % 26;
             if (quotient == 0) {
