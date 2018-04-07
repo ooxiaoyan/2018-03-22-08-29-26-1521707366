@@ -1,9 +1,10 @@
 package com.thoughtworks.collection;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MyMap {
 
@@ -17,22 +18,53 @@ public class MyMap {
     }
 
     public List<Integer> getTriple() {
-        throw new NotImplementedException();
+        return array.stream().map(n -> n*3).collect(Collectors.toList());
     }
 
     public List<String> mapLetter() {
-        throw new NotImplementedException();
+        List<String> resultList = array.stream()
+                .map(integer -> integer+96)
+                .map(integer -> String.valueOf((char)integer.intValue()))
+                .collect(Collectors.toList());
+        return resultList;
     }
 
     public List<String> mapLetters() {
-        throw new NotImplementedException();
+        List<String> resultList = new ArrayList<>();
+        String singleDigit, tenDigit = "", letters;
+        for (Integer integer : array) {
+            int quotient = integer / 26;
+            int remainder = integer % 26;
+            if (quotient == 0) {
+                singleDigit = numberToLetter(remainder);
+            } else {
+                if (remainder == 0) {
+                    singleDigit = "z";
+                    tenDigit = numberToLetter(--quotient);
+                } else {
+                    singleDigit = numberToLetter(remainder);
+                    tenDigit = numberToLetter(quotient);
+                }
+            }
+            letters = tenDigit.concat(singleDigit);
+            resultList.add(letters);
+        }
+        return resultList;
+    }
+
+    public String numberToLetter(int number) {
+        if (number == 0) {
+            return "";
+        } else {
+            return String.valueOf((char)(number + 96));
+        }
     }
 
     public List<Integer> sortFromBig() {
-        throw new NotImplementedException();
+        return array.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
     }
 
     public List<Integer> sortFromSmall() {
-        throw new NotImplementedException();
+        return array.stream().sorted().collect(Collectors.toList());
     }
 }
