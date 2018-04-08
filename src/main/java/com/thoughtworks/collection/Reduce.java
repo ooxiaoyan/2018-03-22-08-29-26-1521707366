@@ -50,14 +50,15 @@ public class Reduce {
     //实现接口SingleLink，然后再此函数内使用
     public Double getMedianInLinkList(SingleLink<Integer> singleLink) {
         double median;
-        singleLink = new SingleLinkImpl<>();
+//        singleLink = new SingleLinkImpl<>();
         for (Integer integer : arrayList) {
             singleLink.addTailPointer(integer);
         }
-        if (singleLink.size() % 2 == 0) {
-            median = (singleLink.getNode(singleLink.size() / 2) + singleLink.getNode(singleLink.size() / 2 + 1)) / 2.0;
+        int size = arrayList.size();
+        if (size % 2 == 0) {
+            median = (singleLink.getNode(size / 2) + singleLink.getNode(size / 2 + 1)) / 2.0;
         } else {
-            median = (singleLink.getNode(singleLink.size() / 2));
+            median = (singleLink.getNode(size / 2));
         }
         return median;
     }
